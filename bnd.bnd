@@ -1,0 +1,4 @@
+Bundle-Name: InvoiceFront
+Bundle-SymbolicName: com.cmancode.invoice.web
+Bundle-Version: 1.0.0
+Export-Package: com.cmancode.invoice.web.constants
