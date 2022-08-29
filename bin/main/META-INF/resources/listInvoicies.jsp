@@ -21,6 +21,7 @@
 				<td style="padding: 5px;"> 
 					<liferay-portlet:renderURL var="updateInvoice">
 						<liferay-portlet:param name="mvcRenderCommandName" value="<%= MVCCommandNames.UPDATE_INVOCE %>"/>
+						<liferay-portlet:param name="invoiceId" value="<%= String.valueOf(invoice.getInvoiceId()) %>"/>
 					</liferay-portlet:renderURL>
 					
 					<aui:a style="padding: 3px; background: blue; color: white;" 
