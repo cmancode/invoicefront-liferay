@@ -1,30 +1,33 @@
+<%@page import="java.util.List"%>
 <%@ include file="init.jsp" %>
 
 <h2>List of Invoicies</h2>
 
-<%-- <div>
+<% List<Invoice> invoicies = (List<Invoice>) renderRequest.getAttribute("invoicies"); %>
+
+<div>
 	<table>
 		<tr>
-			<th>Invoice Number</th>
-			<th>Client</th>
-			<th>Total</th>
+			<th style="padding: 5px;">Invoice Number</th>
+			<th style="padding: 5px;">Client</th>
+			<th style="padding: 5px;">Total</th>
 		</tr>
 		
-		<c:forEach var='invoice' items='${ invoicies }'>
+		<% for(Invoice invoice: invoicies) {%>
 			<tr>
-				<td>${ invoice.invoiceNumber }</td>
-				<td>${ invoice.client }</td>
-				<td>${ invoice.total }</td>
-				<td> 
-					<portlet:renderURL var='updateInvoice'>
-						<portlet:param name='jspPage' value='/editInvoice.jsp' />
-						<portlet:param name='invoiceId' value='${ invoice.invoiceId }' />
-					</portlet:renderURL>
-					<a style="padding: 3px; background: blue; color: white; margin-left: 2px;" 
-							href="${ updateInvoice }">List Invoincies</a>
+				<td style="padding: 5px;"> <%= invoice.getInvoiceNumber() %> </td>
+				<td style="padding: 5px;"> <%= invoice.getClient() %> </td>
+				<td style="padding: 5px;"> <%= invoice.getTotal() %> </td>
+				<td style="padding: 5px;"> 
+					<liferay-portlet:renderURL var="updateInvoice">
+						<liferay-portlet:param name="mvcRenderCommandName" value="<%= MVCCommandNames.UPDATE_INVOCE %>"/>
+					</liferay-portlet:renderURL>
+					
+					<aui:a style="padding: 3px; background: blue; color: white;" 
+						href="<%= updateInvoice %>">Update</aui:a>
 				</td>
 			</tr>
-		</c:forEach>
+		<% } %>
 		
 	</table>
-</div> --%>
+</div>
