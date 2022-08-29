@@ -44,42 +44,43 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class InvoiceFrontPortlet extends MVCPortlet {
 	
-	@Reference
-	private InvoiceService _invoiceService;
-	
-		public void addInvoice(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
-			
-			// Capturing data sent from from
-			String invoiceNumber = ParamUtil.getString(actionRequest, "invoiceNumber", "");
-			String client = ParamUtil.getString(actionRequest, "client", "");
-			String total = ParamUtil.getString(actionRequest, "total", "");
-			
-			ServiceContext serviceContext = null;
-			try {
-				serviceContext = ServiceContextFactory.getInstance(actionRequest);
-				_invoiceService.addInvoice(invoiceNumber, client, total, serviceContext);
-			} catch (PortalException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-	
-	@Override
-	public void render(RenderRequest renderRequest, RenderResponse renderResponse)
-			throws IOException, PortletException {
-		String page = ParamUtil.getString(renderRequest, "jspPage", "");
-
-		if(page.equals("/listInvoicies.jsp")) {
-			List<Invoice> invoicies = this._invoiceService.findInvoices();
-			if(!invoicies.isEmpty()) {
-				renderRequest.setAttribute("invoicies", invoicies);
-			}
-		}
-		
-				
-		super.render(renderRequest, renderResponse);		
-	}
-	
-	
+//	@Reference
+//	private InvoiceService _invoiceService;
+//	
+//		public void addInvoice(ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
+//			
+//			// Capturing data sent from from
+//			String invoiceNumber = ParamUtil.getString(actionRequest, "invoiceNumber", "");
+//			String client = ParamUtil.getString(actionRequest, "client", "");
+//			String total = ParamUtil.getString(actionRequest, "total", "");
+//			
+//			ServiceContext serviceContext = null;
+//			try {
+//				serviceContext = ServiceContextFactory.getInstance(actionRequest);
+//				_invoiceService.addInvoice(invoiceNumber, client, total, serviceContext);
+//			} catch (PortalException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+//		}
+//		
+//	@Override
+//	public void render(RenderRequest renderRequest, RenderResponse renderResponse)
+//			throws IOException, PortletException {
+//		String page = ParamUtil.getString(renderRequest, "jspPage", "");
+//
+//		if(page.equals("/listInvoicies.jsp")) {
+//			System.out.println("Hola");
+//			List<Invoice> invoicies = this._invoiceService.findInvoices();
+//			if(!invoicies.isEmpty()) {
+//				renderRequest.setAttribute("invoicies", invoicies);
+//			}
+//		}
+//		
+//				
+//		super.render(renderRequest, renderResponse);		
+//	}
+//	
+//	
 }
